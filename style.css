@@ -10,6 +10,9 @@ body.light-mode { --bg-color: #f0f2f5; --text-color: #333; --cell-bg: #fff; --ac
 body.dark-mode { --bg-color: #121212; --text-color: #fff; --cell-bg: #1e1e1e; --accent: #bb86fc; }
 body.blue-mode { --bg-color: #001f3f; --text-color: #7fdbff; --cell-bg: #003366; --accent: #39cccc; }
 body.neon-mode { --bg-color: #000; --text-color: #39ff14; --cell-bg: #111; --accent: #ff00ff; }
+* {
+    touch-action: manipulation;
+}
 
 body{
     font-family: Arial, sans-serif;
@@ -18,9 +21,13 @@ body{
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     transition: all 0.3s ease;
+}
+body > p{
+    color: var(--text-color);
 }
 body .container{
     width: 500px;
@@ -77,7 +84,6 @@ label {
     grid-gap: 10px;
     margin-bottom: 20px;
 }
-
 .cell {
     width: 100px;
     height: 100px;
@@ -92,7 +98,14 @@ label {
     color: var(--text-color);
 }
 
+.cell.active{
+    cursor:default;
+
+}
 .cell:hover { opacity: 0.8; }
+.cell.active:hover{
+    opacity: 1;
+}
 #restart {
     padding: 10px 20px;
     background-color: var(--accent);

@@ -12,12 +12,13 @@ const winSound = new Audio('sounds/win.wav');
 const drawSound = new Audio('sounds/lost.wav');
 
 let currentPlayer = 'X';
+let currentPlayer1 = 'X';
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
 
 // نظام النقاط (في الذاكرة الحالية فقط)
 let scores = { X: 0, O: 0 };
-
+console.log(currentPlayer1)
 // --- 1. نظام الألوان ---
 const savedTheme = localStorage.getItem('theme') || 'dark-mode';
 document.body.className = savedTheme;
@@ -41,6 +42,18 @@ function checkResult() {
     for (let i = 0; i < winningConditions.length; i++) {
         const [a, b, c] = winningConditions[i];
         if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+            cells.forEach(cell => {
+                cell.classList.add("active")
+                if (Number(cell.dataset.index) === a){
+                    cell.style.backgroundColor = "var(--accent)";
+                }
+                if (Number(cell.dataset.index) === b){
+                    cell.style.backgroundColor = "var(--accent)";
+                }
+                if (Number(cell.dataset.index) === c){
+                    cell.style.backgroundColor = "var(--accent)";
+                }
+            })
             roundWon = true;
             break;
         }
@@ -63,7 +76,7 @@ function checkResult() {
     }
 
     currentPlayer = currentPlayer === "X" ? "O" : "X";
-    statusText.textContent = currentPlayer;
+    statusDiv.innerHTML = `Player Turn: <span id="current-player">${currentPlayer}</span>`;
 }
 
 function updateScoreBoard() {
@@ -85,14 +98,19 @@ cells.forEach((cell) => {
 });
 
 restartBtn.addEventListener("click", function () {
+    currentPlayer1 = currentPlayer1 === "X" ? "O" : "X";
+    currentPlayer=currentPlayer1
     clickSound.currentTime = 0;
     clickSound.play();
     restartBtn.classList.add("clicked");
     setTimeout(() => restartBtn.classList.remove("clicked"), 150);
-
     gameActive = true;
     gameState = ["", "", "", "", "", "", "", "", ""];
-    cells.forEach(cell => cell.textContent = "");
+    cells.forEach(cell => {
+        cell.classList.remove("active")
+        cell.textContent = "";
+        cell.style.backgroundColor = "var(--cell-bg)";
+    });
     // currentPlayer = currentPlayer === 'X'? "O" : "X";
-    statusDiv.innerHTML = `Player Turn: <span id="current-player">X</span>`;
+    statusDiv.innerHTML = `Player Turn: <span id="current-player">${currentPlayer}</span>`;
 });
