@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe Game Pro</title>
+    <link rel="stylesheet" href="style.css">  
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <h1>XO GAME👹</h1>
+        
+        <div class="theme-selector">
+            <label>Theme: </label>
+            <select id="themeSelect">
+                <option value="dark-mode">Dark (Default)</option>
+                <option value="light-mode">Light</option>
+                <option value="blue-mode">Blue Ocean</option>
+                <option value="neon-mode">Neon Night</option>
+            </select>
+        </div>
+
+        <div class="score-board">
+            Player X: <span id="scoreX">0</span> | Player O: <span id="scoreO">0</span>
+        </div>
+
+        <div id="status">Player Turn: <span id="current-player">X</span></div>
+        
+        <div class="grid" id="grid">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <button id="restart">Restart Game</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
